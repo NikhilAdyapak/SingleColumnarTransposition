@@ -182,7 +182,7 @@ def decrypt():
     f1.close()
 
 
-def decryptgen():
+def keylessdecrypt():
     c = 1
     flag = True
 
@@ -301,7 +301,7 @@ def main():
     elif choice == '2':
         decrypt()
     elif choice == '3':
-        decryptgen()
+        keylessdecrypt()
     else:
         print("Invalid choice\n")
 
