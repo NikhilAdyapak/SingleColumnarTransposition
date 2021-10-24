@@ -4,6 +4,7 @@ import numpy as np
 import itertools
 from wordsegment import load, segment
 load()
+import time
 
 usen = enchant.Dict("en_US")
 uken = enchant.Dict("en_GB")
@@ -198,7 +199,7 @@ def keylessdecrypt():
         if c == 3:
             print("Too many invalid attempts\n")
             sys.exit()
-
+    t0=time.time()
     a = f.read()
     alength = len(a)
 
@@ -269,6 +270,13 @@ def keylessdecrypt():
                         print(op, file=f1)
                         f1.close()
                         flag = False
+                        t1=time.time()
+                        ext=t1-t0
+                        f1=open('time.txt','a')
+                        st=''
+                        st+=str(ext)+'\n'
+                        f1.write(st)
+                        f1.close()
                         sys.exit()
                     except IOError:
                         print("File could not be opened\n")
@@ -301,7 +309,13 @@ def main():
     elif choice == '2':
         decrypt()
     elif choice == '3':
+        t0 = time.time()
         keylessdecrypt()
+        t1 = time.time()
+        exe_time = t1-t0
+        f1 = open('timeout.txt','a')
+        f1.write(exe_time,"\n")
+        f1.close()
     else:
         print("Invalid choice\n")
 
